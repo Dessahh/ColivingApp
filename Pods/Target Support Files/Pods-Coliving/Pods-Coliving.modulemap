@@ -1,0 +1,6 @@
+framework module Pods_Coliving {
+  umbrella header "Pods-Coliving-umbrella.h"
+
+  export *
+  module * { export * }
+}
