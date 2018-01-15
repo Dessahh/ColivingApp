@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>184173726010-i6o0o41r6sb8tqgknlubr8rt1mu57p1b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.184173726010-i6o0o41r6sb8tqgknlubr8rt1mu57p1b</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDiJiNeN4mx7Md1-zpbV0tuFe8nAsBSM_k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>184173726010</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.andressa.aquino.Coliving</string>
+	<key>PROJECT_ID</key>
+	<string>coliving-d7ba2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>coliving-d7ba2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:184173726010:ios:2170e704d5bee244</string>
+	<key>DATABASE_URL</key>
+	<string>https://coliving-d7ba2.firebaseio.com</string>
+</dict>
+</plist>

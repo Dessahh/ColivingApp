@@ -14,9 +14,18 @@
 		89AD9F542007FCF900A8DE47 /* ShoppingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9F532007FCF900A8DE47 /* ShoppingListTableViewController.swift */; };
 		89AD9F57200BC8B100A8DE47 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9F56200BC8B100A8DE47 /* DatabaseManager.swift */; };
 		89AD9F5D200BD42400A8DE47 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89AD9F5C200BD42400A8DE47 /* CloudKit.framework */; };
+		89AD9F5F200CE09100A8DE47 /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9F5E200CE09100A8DE47 /* ShoppingListTableViewCell.swift */; };
+		89AD9F61200D145700A8DE47 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89AD9F60200D145700A8DE47 /* GoogleService-Info.plist */; };
+		89AD9F64200D16F200A8DE47 /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9F63200D16F200A8DE47 /* ShoppingItem.swift */; };
+		89AD9FF4200D380C00A8DE47 /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9FED200D380C00A8DE47 /* BEMAnimationManager.m */; };
+		89AD9FF5200D380C00A8DE47 /* BEMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9FEF200D380C00A8DE47 /* BEMCheckBox.m */; };
+		89AD9FF6200D380C00A8DE47 /* BEMCheckBoxGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9FF1200D380C00A8DE47 /* BEMCheckBoxGroup.m */; };
+		89AD9FF7200D380C00A8DE47 /* BEMPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9FF3200D380C00A8DE47 /* BEMPathManager.m */; };
+		D8B2BDE3EB383F512347EEBC /* Pods_Coliving.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB6762DD7704CDF3945FD0A /* Pods_Coliving.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		438CF5D2770D31502EF60C49 /* Pods-Coliving.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coliving.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coliving/Pods-Coliving.release.xcconfig"; sourceTree = "<group>"; };
 		89AD9F372007A19D00A8DE47 /* Coliving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coliving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89AD9F3A2007A19D00A8DE47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89AD9F3F2007A19D00A8DE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -27,6 +36,20 @@
 		89AD9F56200BC8B100A8DE47 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		89AD9F58200BC8D800A8DE47 /* Coliving.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Coliving.entitlements; sourceTree = "<group>"; };
 		89AD9F5C200BD42400A8DE47 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		89AD9F5E200CE09100A8DE47 /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
+		89AD9F60200D145700A8DE47 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		89AD9F63200D16F200A8DE47 /* ShoppingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
+		89AD9FEC200D380C00A8DE47 /* BEMAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimationManager.h; sourceTree = "<group>"; };
+		89AD9FED200D380C00A8DE47 /* BEMAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAnimationManager.m; sourceTree = "<group>"; };
+		89AD9FEE200D380C00A8DE47 /* BEMCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBox.h; sourceTree = "<group>"; };
+		89AD9FEF200D380C00A8DE47 /* BEMCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBox.m; sourceTree = "<group>"; };
+		89AD9FF0200D380C00A8DE47 /* BEMCheckBoxGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBoxGroup.h; sourceTree = "<group>"; };
+		89AD9FF1200D380C00A8DE47 /* BEMCheckBoxGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBoxGroup.m; sourceTree = "<group>"; };
+		89AD9FF2200D380C00A8DE47 /* BEMPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPathManager.h; sourceTree = "<group>"; };
+		89AD9FF3200D380C00A8DE47 /* BEMPathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPathManager.m; sourceTree = "<group>"; };
+		89AD9FF8200D391400A8DE47 /* CheckMarkHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckMarkHeader.h; sourceTree = "<group>"; };
+		DDB6762DD7704CDF3945FD0A /* Pods_Coliving.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coliving.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA2BB133990D27AA422B5B81 /* Pods-Coliving.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coliving.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coliving/Pods-Coliving.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,18 +58,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				89AD9F5D200BD42400A8DE47 /* CloudKit.framework in Frameworks */,
+				D8B2BDE3EB383F512347EEBC /* Pods_Coliving.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23F851D29A68A685ECAE5C76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FA2BB133990D27AA422B5B81 /* Pods-Coliving.debug.xcconfig */,
+				438CF5D2770D31502EF60C49 /* Pods-Coliving.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		89AD9F2E2007A19D00A8DE47 = {
 			isa = PBXGroup;
 			children = (
+				89AD9FF8200D391400A8DE47 /* CheckMarkHeader.h */,
 				89AD9F392007A19D00A8DE47 /* Coliving */,
 				89AD9F382007A19D00A8DE47 /* Products */,
 				89AD9F59200BC8E800A8DE47 /* Frameworks */,
+				23F851D29A68A685ECAE5C76 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,10 +97,12 @@
 			isa = PBXGroup;
 			children = (
 				89AD9F58200BC8D800A8DE47 /* Coliving.entitlements */,
+				89AD9F62200D16A700A8DE47 /* Objects */,
 				89AD9F55200BC89400A8DE47 /* Persistence */,
 				89AD9F4E2007F9A100A8DE47 /* View */,
 				89AD9F3A2007A19D00A8DE47 /* AppDelegate.swift */,
 				89AD9F462007A19D00A8DE47 /* Info.plist */,
+				89AD9F60200D145700A8DE47 /* GoogleService-Info.plist */,
 			);
 			path = Coliving;
 			sourceTree = "<group>";
@@ -73,6 +110,7 @@
 		89AD9F4E2007F9A100A8DE47 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				89AD9FEB200D380C00A8DE47 /* Classes */,
 				89AD9F412007A19D00A8DE47 /* Assets.xcassets */,
 				89AD9F502007F9B800A8DE47 /* View Controllers */,
 				89AD9F4F2007F9AD00A8DE47 /* Storyboards */,
@@ -93,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				89AD9F532007FCF900A8DE47 /* ShoppingListTableViewController.swift */,
+				89AD9F5E200CE09100A8DE47 /* ShoppingListTableViewCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -109,8 +148,32 @@
 			isa = PBXGroup;
 			children = (
 				89AD9F5C200BD42400A8DE47 /* CloudKit.framework */,
+				DDB6762DD7704CDF3945FD0A /* Pods_Coliving.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		89AD9F62200D16A700A8DE47 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				89AD9F63200D16F200A8DE47 /* ShoppingItem.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		89AD9FEB200D380C00A8DE47 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				89AD9FEC200D380C00A8DE47 /* BEMAnimationManager.h */,
+				89AD9FED200D380C00A8DE47 /* BEMAnimationManager.m */,
+				89AD9FEE200D380C00A8DE47 /* BEMCheckBox.h */,
+				89AD9FEF200D380C00A8DE47 /* BEMCheckBox.m */,
+				89AD9FF0200D380C00A8DE47 /* BEMCheckBoxGroup.h */,
+				89AD9FF1200D380C00A8DE47 /* BEMCheckBoxGroup.m */,
+				89AD9FF2200D380C00A8DE47 /* BEMPathManager.h */,
+				89AD9FF3200D380C00A8DE47 /* BEMPathManager.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,9 +183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89AD9F492007A19D00A8DE47 /* Build configuration list for PBXNativeTarget "Coliving" */;
 			buildPhases = (
+				B09C5FC94B10F24CD28ED840 /* [CP] Check Pods Manifest.lock */,
 				89AD9F332007A19D00A8DE47 /* Sources */,
 				89AD9F342007A19D00A8DE47 /* Frameworks */,
 				89AD9F352007A19D00A8DE47 /* Resources */,
+				F8857BE942BC7424D5307D39 /* [CP] Embed Pods Frameworks */,
+				57C560EFF61D016F73C9C92B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -183,10 +249,69 @@
 				89AD9F452007A19D00A8DE47 /* LaunchScreen.storyboard in Resources */,
 				89AD9F422007A19D00A8DE47 /* Assets.xcassets in Resources */,
 				89AD9F402007A19D00A8DE47 /* Main.storyboard in Resources */,
+				89AD9F61200D145700A8DE47 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		57C560EFF61D016F73C9C92B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Coliving/Pods-Coliving-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B09C5FC94B10F24CD28ED840 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Coliving-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8857BE942BC7424D5307D39 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Coliving/Pods-Coliving-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Coliving/Pods-Coliving-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		89AD9F332007A19D00A8DE47 /* Sources */ = {
@@ -194,8 +319,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				89AD9F3B2007A19D00A8DE47 /* AppDelegate.swift in Sources */,
+				89AD9FF5200D380C00A8DE47 /* BEMCheckBox.m in Sources */,
+				89AD9F5F200CE09100A8DE47 /* ShoppingListTableViewCell.swift in Sources */,
 				89AD9F542007FCF900A8DE47 /* ShoppingListTableViewController.swift in Sources */,
+				89AD9FF7200D380C00A8DE47 /* BEMPathManager.m in Sources */,
+				89AD9F64200D16F200A8DE47 /* ShoppingItem.swift in Sources */,
+				89AD9FF6200D380C00A8DE47 /* BEMCheckBoxGroup.m in Sources */,
 				89AD9F57200BC8B100A8DE47 /* DatabaseManager.swift in Sources */,
+				89AD9FF4200D380C00A8DE47 /* BEMAnimationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +461,7 @@
 		};
 		89AD9F4A2007A19D00A8DE47 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA2BB133990D27AA422B5B81 /* Pods-Coliving.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Coliving/Coliving.entitlements;
@@ -339,6 +471,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.andressa.aquino.Coliving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = CheckMarkHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -346,6 +479,7 @@
 		};
 		89AD9F4B2007A19D00A8DE47 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 438CF5D2770D31502EF60C49 /* Pods-Coliving.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Coliving/Coliving.entitlements;
@@ -355,6 +489,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.andressa.aquino.Coliving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = CheckMarkHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

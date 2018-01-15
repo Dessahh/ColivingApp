@@ -7,49 +7,110 @@
 //
 
 import UIKit
-import CloudKit
+
+import FirebaseDatabase
 
 class DatabaseManager: NSObject {
 
-	static let databaseRef = CKContainer.default().database(with: .public)
+	//FIRDatabaseReference for the root of Coliving's Firebase Database
+	static var ref: DatabaseReference = Database.database().reference()
 
-	static func addShoppingItem(item: String, completionHandler: @escaping (Error?) -> Void){
+	private override init() {}
 
-		let newItem = CKRecord(recordType: "ShoppingList")
-		newItem.setValue(item, forKey: "item")
+	///Checks connection with Firebase Database backend
+	static func checkConnection(completionHandler: @escaping (Bool) -> Void) {
+		let connectedRef = Database.database().reference(withPath: ".info/connected")
 
-		databaseRef.save(newItem) { (record, error) in
-
-			guard (error == nil) else {
-				completionHandler(error)
-				return
+		connectedRef.observeSingleEvent(of: .value) {
+			snapshot in
+			if let connected = snapshot.value as? Bool, connected {
+				print("Connected")
+			} else {
+				print("Not connected")
 			}
-
-
 		}
 	}
 
-	static func fetchShoppingItem(completionHandler: @escaping([String]?, Error?) -> Void){
 
-		let query = CKQuery(recordType: "ShoppingList", predicate: NSPredicate(value: true))
 
-		databaseRef.perform(query, inZoneWith: nil) {
-			(records, error) in
+	static func fetchShoppingItem(completionHandler: @escaping([ShoppingItem]?) -> Void){
+
+		let shoppingListRef = ref.child("ShoppingList")
+
+		shoppingListRef.observeSingleEvent(of: .value) {
+			(snapshot) in
+
+			if let snapList = snapshot.children.allObjects as? [DataSnapshot]{
+
+				guard (snapList.count != 0) else {
+					print("No item found on Shoppint List on DB")
+					completionHandler(nil)
+					return
+
+				}
+
+				var shoppingList = [ShoppingItem]()
+
+				for i in snapList {
+
+					guard let itemName = i.value as? String else {
+						print("Error on fetching item`s name on DB.")
+						completionHandler(nil)
+						return
+					}
+
+					guard let itemId = i.key as? String else {
+						print("Error on fetching item`s id on DB.")
+						completionHandler(nil)
+						return
+					}
+
+					let shoppingItem = ShoppingItem(name: itemName, id: itemId, checked: false)
+
+					shoppingList.append(shoppingItem)
+				}
+
+				completionHandler(shoppingList)
+
+			}
+
+		}
+
+	}
+
+	static func addShoppingItem(item: String, completionHandler: @escaping (String?, Error?) -> Void){
+
+		let childRef = ref.child("ShoppingList").childByAutoId()
+
+		childRef.setValue(item) {
+			(error, _) in
 
 			guard (error == nil) else {
 				completionHandler(nil, error)
 				return
 			}
 
-			var itemsList = [String]()
+			let itemID = childRef.key
 
-			for i in records! {
+			completionHandler(itemID, nil)
+		}
 
-				itemsList.append(i.value(forKey: "item") as! String)
+	}
+
+	static func removeShoppingItem(item: ShoppingItem, completionHandler: @escaping(Error?) -> Void){
+
+		let itemRef = ref.child("ShoppingList").child(item.id!)
+
+		itemRef.removeValue {
+			(error, _) in
+
+			guard (error == nil) else {
+				completionHandler(error)
+				return
 			}
 
-			completionHandler(itemsList, error)
-
+			completionHandler(nil)
 		}
+
 	}
 }
