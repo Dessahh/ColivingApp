@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource, UIGestureRecognizerDelegate {
+class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource, UIGestureRecognizerDelegate, BEMCheckBoxDelegate {
 
 	@IBOutlet weak var textField: UITextField!
 	@IBOutlet weak var tableView: UITableView!
 
-	var shoppingList = [String]()
+	var shoppingList = [ShoppingItem]()
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,14 +44,14 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 	override func viewDidAppear(_ animated: Bool) {
 
 		DatabaseManager.fetchShoppingItem {
-			(shoppintList, error) in
+			(shoppingList) in
 
-			guard (error == nil) else {
-				print("Error on fetching shopping list of DB. Error: \(error.debugDescription)")
+			guard (shoppingList != nil) else {
+				print("Error on fetching shopping list of DB.")
 				return
 			}
 
-			self.shoppingList = shoppintList!
+			self.shoppingList = shoppingList!
 
 			DispatchQueue.main.async {
 				self.tableView.reloadData()
@@ -59,8 +59,8 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 
 		}
 
-
 	}
+
 
 	override func viewWillAppear(_ animated: Bool) {
 
@@ -97,9 +97,14 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-		let cell = UITableViewCell(style: .default, reuseIdentifier: "shoppingListCell")
+		let cell = tableView.dequeueReusableCell(withIdentifier: "shoppingListCell", for: indexPath) as! ShoppingListTableViewCell
 
-		cell.textLabel?.text = shoppingList[indexPath.row]
+		cell.itemLabel.text = shoppingList[indexPath.row].name
+
+		cell.checkBox.onAnimationType = .fill
+		cell.checkBox.offAnimationType = .fill
+		cell.checkBox.tag = indexPath.row
+		cell.checkBox.delegate = self
 		
 		return cell
 	}
@@ -112,32 +117,47 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 	///delete row from the table view
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
-		if editingStyle == UITableViewCellEditingStyle.delete{
+		if editingStyle == UITableViewCellEditingStyle.delete {
 			let index = indexPath.row
 			removeItem(index)
-
 		}
 	}
 
 	// MARK: - Add and Remove item
 	func addItem(_ item: String){
-		shoppingList.append(item)
 
 		DatabaseManager.addShoppingItem(item: item) {
-			(error) in
+			(id, error) in
 
 			guard (error == nil) else {
 				print("Error on adding item to DB. Error: \(error.debugDescription)")
 				return
 			}
+
+			let newItem = ShoppingItem(name: item, id: id!, checked: false)
+			self.shoppingList.append(newItem)
+
+			self.tableView.reloadData()
+			self.textField.text = ""
 		}
 
-		self.tableView.reloadData()
-		self.textField.text = ""
+
 	}
 
 	///remove item and update table view
 	func removeItem(_ index: Int){
+
+		let item = shoppingList[index]
+
+		DatabaseManager.removeShoppingItem(item: item) {
+			(error) in
+
+			guard (error == nil) else {
+				print("Error on removing item to DB. Error: \(error.debugDescription)")
+				return
+			}
+
+		}
 
 		self.shoppingList.remove(at: index)
 		self.tableView.reloadData()
