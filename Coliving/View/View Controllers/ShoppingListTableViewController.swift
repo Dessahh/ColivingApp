@@ -14,7 +14,6 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 	@IBOutlet weak var tableView: UITableView!
 
 	var shoppingList = [ShoppingItem]()
-	var selectedList = [Int]()
 
 	var refresh: UIRefreshControl!
 
@@ -60,13 +59,6 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 
 			self.shoppingList = list!
 
-			/// Check for selected items and update the selectedList
-			for i in 0..<self.shoppingList.count{
-				if self.shoppingList[i].checked == true {
-					self.selectedList.append(i)
-				}
-			}
-
 			DispatchQueue.main.async {
 				self.tableView.reloadData()
 			}
@@ -104,6 +96,8 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 			self.textField.becomeFirstResponder()
 		} else if textField.text != "" {
 			self.addItem(textField.text!)
+			self.textField.text = ""
+
 		}
 
 	}
@@ -162,7 +156,10 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 			//self.shoppingList.append(newItem)
 
 			//self.tableView.reloadData()
-			self.textField.text = ""
+
+			DispatchQueue.main.async {
+				self.textField.text = ""
+			}
 		}
 	}
 
@@ -179,9 +176,9 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 				return
 			}
 
-			if let selectedIndex = self.selectedList.index(of: index) {
-				self.selectedList.remove(at: selectedIndex)
-			}
+			//if let selectedIndex = self.selectedList.index(of: index) {
+			//	self.selectedList.remove(at: selectedIndex)
+			//}
 
 			//self.shoppingList.remove(at: index)
 			//self.tableView.reloadData()
@@ -192,12 +189,11 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 	///remove selected itens and update table view
 	@objc func refreshAction() {
 
-		selectedList.sort(by: >)
-		for i in selectedList{
-			removeItem(i)
+		for i in 0..<shoppingList.count{
+			if shoppingList[i].checked == true{
+				self.removeItem(i)
+			}
 		}
-
-		selectedList.removeAll()
 
 		self.refresh.endRefreshing()
 	}
@@ -233,7 +229,7 @@ extension ShoppingListTableViewController: BEMCheckBoxDelegate {
 					return
 				}
 
-				self.selectedList.append(checkBox.tag)
+				//self.selectedList.append(checkBox.tag)
 				//self.shoppingList[checkBox.tag].checked = true
 
 			})
@@ -253,8 +249,8 @@ extension ShoppingListTableViewController: BEMCheckBoxDelegate {
 				}
 
 				//self.shoppingList[checkBox.tag].checked = false
-				let index = self.selectedList.index(of: checkBox.tag)
-				self.selectedList.remove(at: index!)
+				//let index = self.selectedList.index(of: checkBox.tag)
+				//self.selectedList.remove(at: index!)
 
 			})
 
