@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -185,7 +186,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6Q-fT-eC6">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6Q-fT-eC6">
                                                     <rect key="frame" x="44" y="12" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -237,10 +238,12 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="j6Q-fT-eC6" firstAttribute="bottom" secondItem="wLO-b7-QlI" secondAttribute="bottomMargin" id="4ea-eV-aZA"/>
                                                 <constraint firstAttribute="bottom" secondItem="351-WQ-adk" secondAttribute="bottom" constant="10.5" id="BcP-aK-po0"/>
                                                 <constraint firstItem="j6Q-fT-eC6" firstAttribute="leading" secondItem="351-WQ-adk" secondAttribute="trailing" constant="13" id="LvQ-cF-Ndy"/>
                                                 <constraint firstItem="351-WQ-adk" firstAttribute="top" secondItem="wLO-b7-QlI" secondAttribute="top" constant="11" id="fJP-pM-qtA"/>
                                                 <constraint firstItem="351-WQ-adk" firstAttribute="leading" secondItem="wLO-b7-QlI" secondAttribute="leading" constant="9" id="h3I-Mc-Yk9"/>
+                                                <constraint firstItem="j6Q-fT-eC6" firstAttribute="top" secondItem="wLO-b7-QlI" secondAttribute="topMargin" constant="1" id="yZo-T5-iu5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -281,7 +284,11 @@
                         <viewLayoutGuide key="safeArea" id="pbn-rX-fsq"/>
                     </view>
                     <navigationItem key="navigationItem" title="Shopping List" id="iuW-dF-aaF">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="TkH-i8-gYC"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="TkH-i8-gYC">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="S60-3d-wT0" id="Ek4-2H-tgb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="1EZ-kV-Fhd" id="V3E-av-BjN"/>

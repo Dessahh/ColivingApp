@@ -8,15 +8,22 @@
 
 import UIKit
 
-class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource, UIGestureRecognizerDelegate, BEMCheckBoxDelegate {
+class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource, UIGestureRecognizerDelegate {
 
 	@IBOutlet weak var textField: UITextField!
 	@IBOutlet weak var tableView: UITableView!
 
 	var shoppingList = [ShoppingItem]()
+	var selectedList = [Int]()
+
+	var refresh: UIRefreshControl!
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+
+		self.refresh = UIRefreshControl()
+		self.refresh.addTarget(self, action: #selector(refreshAction), for: .valueChanged)
+		self.tableView.addSubview(refresh)
 
 		/// Design the textfield
 		self.textField.tintColor = UIColor(red:0.89, green:0.00, blue:0.00, alpha:1.0)
@@ -43,15 +50,22 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 
 	override func viewDidAppear(_ animated: Bool) {
 
-		DatabaseManager.fetchShoppingItem {
-			(shoppingList) in
+		DatabaseManager.addObserverToShoppingItems {
+			(list) in
 
-			guard (shoppingList != nil) else {
+			guard (list != nil) else {
 				print("Error on fetching shopping list of DB.")
 				return
 			}
 
-			self.shoppingList = shoppingList!
+			self.shoppingList = list!
+
+			/// Check for selected items and update the selectedList
+			for i in 0..<self.shoppingList.count{
+				if self.shoppingList[i].checked == true {
+					self.selectedList.append(i)
+				}
+			}
 
 			DispatchQueue.main.async {
 				self.tableView.reloadData()
@@ -60,7 +74,6 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 		}
 
 	}
-
 
 	override func viewWillAppear(_ animated: Bool) {
 
@@ -92,7 +105,13 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 		} else if textField.text != "" {
 			self.addItem(textField.text!)
 		}
+
 	}
+
+	@IBAction func doneButtonPressed(_ sender: Any) {
+		self.refreshAction()
+	}
+
 	// MARK: - Table view data source
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,9 +122,14 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 
 		cell.checkBox.onAnimationType = .fill
 		cell.checkBox.offAnimationType = .fill
+
+		/// Set the tag to catch the index of selected item afterwards
 		cell.checkBox.tag = indexPath.row
+
 		cell.checkBox.delegate = self
-		
+
+		cell.checkBox.setOn(shoppingList[indexPath.row].checked!, animated: false)
+
 		return cell
 	}
 
@@ -123,7 +147,7 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 		}
 	}
 
-	// MARK: - Add and Remove item
+	// MARK: - Control Items
 	func addItem(_ item: String){
 
 		DatabaseManager.addShoppingItem(item: item) {
@@ -134,14 +158,12 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 				return
 			}
 
-			let newItem = ShoppingItem(name: item, id: id!, checked: false)
-			self.shoppingList.append(newItem)
+			//let newItem = ShoppingItem(name: item, id: id!, checked: false)
+			//self.shoppingList.append(newItem)
 
-			self.tableView.reloadData()
+			//self.tableView.reloadData()
 			self.textField.text = ""
 		}
-
-
 	}
 
 	///remove item and update table view
@@ -157,13 +179,29 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 				return
 			}
 
+			if let selectedIndex = self.selectedList.index(of: index) {
+				self.selectedList.remove(at: selectedIndex)
+			}
+
+			//self.shoppingList.remove(at: index)
+			//self.tableView.reloadData()
 		}
 
-		self.shoppingList.remove(at: index)
-		self.tableView.reloadData()
-
-
 	}
+
+	///remove selected itens and update table view
+	@objc func refreshAction() {
+
+		selectedList.sort(by: >)
+		for i in selectedList{
+			removeItem(i)
+		}
+
+		selectedList.removeAll()
+
+		self.refresh.endRefreshing()
+	}
+
 
     /*
     // MARK: - Navigation
@@ -175,6 +213,53 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
     }
     */
 
+}
+
+extension ShoppingListTableViewController: BEMCheckBoxDelegate {
+
+    ///add or remove the selected item on the list
+	func didTap(_ checkBox: BEMCheckBox) {
+
+		if checkBox.on == true {
+
+			let item = shoppingList[checkBox.tag]
+
+			/// Change the check status on DB, this way the other users will keep updated
+			DatabaseManager.changeCheckItemStatus(item: item, newStatus: "true", completionHandler: {
+				(error) in
+
+				guard (error == nil) else {
+					print("Error on changing the item status on DB. Error: \(error.debugDescription)")
+					return
+				}
+
+				self.selectedList.append(checkBox.tag)
+				//self.shoppingList[checkBox.tag].checked = true
+
+			})
+
+		}
+		else {
+
+			let item = shoppingList[checkBox.tag]
+
+			/// Change the check status on DB, this way the other users will keep updated
+			DatabaseManager.changeCheckItemStatus(item: item, newStatus: "false", completionHandler: {
+				(error) in
+
+				guard (error == nil) else {
+					print("Error on changing the item status on DB. Error: \(error.debugDescription)")
+					return
+				}
+
+				//self.shoppingList[checkBox.tag].checked = false
+				let index = self.selectedList.index(of: checkBox.tag)
+				self.selectedList.remove(at: index!)
+
+			})
+
+		}
+	}
 }
 
 extension ShoppingListTableViewController: UITextFieldDelegate {
