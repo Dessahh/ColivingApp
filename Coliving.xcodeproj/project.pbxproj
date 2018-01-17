@@ -21,6 +21,9 @@
 		89AD9FF5200D380C00A8DE47 /* BEMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9FEF200D380C00A8DE47 /* BEMCheckBox.m */; };
 		89AD9FF6200D380C00A8DE47 /* BEMCheckBoxGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9FF1200D380C00A8DE47 /* BEMCheckBoxGroup.m */; };
 		89AD9FF7200D380C00A8DE47 /* BEMPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9FF3200D380C00A8DE47 /* BEMPathManager.m */; };
+		89C28F04200FAEBA00A40E2B /* FinancesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C28F03200FAEB900A40E2B /* FinancesViewController.swift */; };
+		89C28F06200FAEFB00A40E2B /* FinancesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C28F05200FAEFB00A40E2B /* FinancesTableViewCell.swift */; };
+		89C28F08200FC20200A40E2B /* AddNewValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C28F07200FC20200A40E2B /* AddNewValueViewController.swift */; };
 		D8B2BDE3EB383F512347EEBC /* Pods_Coliving.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB6762DD7704CDF3945FD0A /* Pods_Coliving.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +51,9 @@
 		89AD9FF2200D380C00A8DE47 /* BEMPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPathManager.h; sourceTree = "<group>"; };
 		89AD9FF3200D380C00A8DE47 /* BEMPathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPathManager.m; sourceTree = "<group>"; };
 		89AD9FF8200D391400A8DE47 /* CheckMarkHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckMarkHeader.h; sourceTree = "<group>"; };
+		89C28F03200FAEB900A40E2B /* FinancesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesViewController.swift; sourceTree = "<group>"; };
+		89C28F05200FAEFB00A40E2B /* FinancesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesTableViewCell.swift; sourceTree = "<group>"; };
+		89C28F07200FC20200A40E2B /* AddNewValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewValueViewController.swift; sourceTree = "<group>"; };
 		DDB6762DD7704CDF3945FD0A /* Pods_Coliving.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coliving.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2BB133990D27AA422B5B81 /* Pods-Coliving.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coliving.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coliving/Pods-Coliving.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +118,7 @@
 			children = (
 				89AD9FEB200D380C00A8DE47 /* Classes */,
 				89AD9F412007A19D00A8DE47 /* Assets.xcassets */,
+				89C28F02200FAE9400A40E2B /* Cell */,
 				89AD9F502007F9B800A8DE47 /* View Controllers */,
 				89AD9F4F2007F9AD00A8DE47 /* Storyboards */,
 			);
@@ -131,7 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				89AD9F532007FCF900A8DE47 /* ShoppingListTableViewController.swift */,
-				89AD9F5E200CE09100A8DE47 /* ShoppingListTableViewCell.swift */,
+				89C28F03200FAEB900A40E2B /* FinancesViewController.swift */,
+				89C28F07200FC20200A40E2B /* AddNewValueViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -174,6 +182,15 @@
 				89AD9FF3200D380C00A8DE47 /* BEMPathManager.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		89C28F02200FAE9400A40E2B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				89AD9F5E200CE09100A8DE47 /* ShoppingListTableViewCell.swift */,
+				89C28F05200FAEFB00A40E2B /* FinancesTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,7 +341,10 @@
 				89AD9F542007FCF900A8DE47 /* ShoppingListTableViewController.swift in Sources */,
 				89AD9FF7200D380C00A8DE47 /* BEMPathManager.m in Sources */,
 				89AD9F64200D16F200A8DE47 /* ShoppingItem.swift in Sources */,
+				89C28F06200FAEFB00A40E2B /* FinancesTableViewCell.swift in Sources */,
 				89AD9FF6200D380C00A8DE47 /* BEMCheckBoxGroup.m in Sources */,
+				89C28F04200FAEBA00A40E2B /* FinancesViewController.swift in Sources */,
+				89C28F08200FC20200A40E2B /* AddNewValueViewController.swift in Sources */,
 				89AD9F57200BC8B100A8DE47 /* DatabaseManager.swift in Sources */,
 				89AD9FF4200D380C00A8DE47 /* BEMAnimationManager.m in Sources */,
 			);
