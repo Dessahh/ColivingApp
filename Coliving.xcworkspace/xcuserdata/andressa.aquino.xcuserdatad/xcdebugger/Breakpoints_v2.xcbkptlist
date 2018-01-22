@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coliving/View/View Controllers/ShoppingListTableViewController.swift"
-            timestampString = "537908012.2922159"
+            timestampString = "538336479.1036381"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "refreshAction()"
             landmarkType = "7">
          </BreakpointContent>
@@ -25,46 +25,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Coliving/View/View Controllers/ShoppingListTableViewController.swift"
-            timestampString = "537908012.2923419"
+            filePath = "Coliving/Persistence/DatabaseManager.swift"
+            timestampString = "538334688.652274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "removeItem(_:)"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "addFinanceTransaction(transaction:completionHandler:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Coliving.ShoppingListTableViewController.removeItem(Swift.Int) -&gt; ()"
-                  moduleName = "Coliving"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andressa.aquino/Downloads/pet%20projects/bepid/Coliving/ColivingApp/Coliving/View/View%20Controllers/ShoppingListTableViewController.swift"
-                  timestampString = "537908012.441098"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "185"
-                  endingLineNumber = "185"
-                  offsetFromSymbolStart = "136">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Coliving.ShoppingListTableViewController.removeItem(Swift.Int) -&gt; ()"
-                  moduleName = "Coliving"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andressa.aquino/Downloads/pet%20projects/bepid/Coliving/ColivingApp/Coliving/View/View%20Controllers/ShoppingListTableViewController.swift"
-                  timestampString = "537908012.442775"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "185"
-                  endingLineNumber = "185"
-                  offsetFromSymbolStart = "124">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Coliving/Persistence/DatabaseManager.swift"
+            timestampString = "538334688.652344"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "addFinanceTransaction(transaction:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Coliving/View/View Controllers/FinancesViewController.swift"
+            timestampString = "538336479.103879"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

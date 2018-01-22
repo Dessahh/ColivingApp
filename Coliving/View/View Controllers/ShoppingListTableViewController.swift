@@ -152,11 +152,6 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 				return
 			}
 
-			//let newItem = ShoppingItem(name: item, id: id!, checked: false)
-			//self.shoppingList.append(newItem)
-
-			//self.tableView.reloadData()
-
 			DispatchQueue.main.async {
 				self.textField.text = ""
 			}
@@ -176,12 +171,6 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 				return
 			}
 
-			//if let selectedIndex = self.selectedList.index(of: index) {
-			//	self.selectedList.remove(at: selectedIndex)
-			//}
-
-			//self.shoppingList.remove(at: index)
-			//self.tableView.reloadData()
 		}
 
 	}
@@ -211,6 +200,8 @@ class ShoppingListTableViewController: UIViewController, UITableViewDelegate,  U
 
 }
 
+// MARK: - Check Box
+
 extension ShoppingListTableViewController: BEMCheckBoxDelegate {
 
     ///add or remove the selected item on the list
@@ -229,9 +220,6 @@ extension ShoppingListTableViewController: BEMCheckBoxDelegate {
 					return
 				}
 
-				//self.selectedList.append(checkBox.tag)
-				//self.shoppingList[checkBox.tag].checked = true
-
 			})
 
 		}
@@ -248,15 +236,13 @@ extension ShoppingListTableViewController: BEMCheckBoxDelegate {
 					return
 				}
 
-				//self.shoppingList[checkBox.tag].checked = false
-				//let index = self.selectedList.index(of: checkBox.tag)
-				//self.selectedList.remove(at: index!)
-
 			})
 
 		}
 	}
 }
+
+// MARK: - Text field delegate
 
 extension ShoppingListTableViewController: UITextFieldDelegate {
 
