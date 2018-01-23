@@ -14,13 +14,13 @@ class AddNewValueViewController: UIViewController {
 	@IBOutlet weak var nameTextField: UITextField!
 	@IBOutlet weak var valueTextField: UITextField!
 	@IBOutlet weak var categoryTextField: UITextField!
-
-	@IBOutlet weak var datePicker: UIDatePicker!
+	@IBOutlet weak var dateTextField: UITextField!
 
 	var signPickerView = UIPickerView()
 	//let categoryArray = FinanceCategorys.getCategorys()
 
 	var categoryPickerView = UIPickerView()
+	var datePicker = UIDatePicker()
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +31,21 @@ class AddNewValueViewController: UIViewController {
 		self.configureTextField(nameTextField, 1)
 		self.configureTextField(valueTextField, 2)
 		self.configureTextField(categoryTextField, 3)
-		
+		self.configureTextField(dateTextField, 4)
 
 		/// Picker View initial configuration
 
 		self.categoryPickerView.delegate = self
+		self.datePicker.addTarget(self, action: #selector(AddNewValueViewController.datePickerValueChanged(_:)), for: .valueChanged)
 
-		categoryTextField.inputView = categoryPickerView
+
+		self.dateTextField.inputView = datePicker
+		self.categoryTextField.inputView = categoryPickerView
+
+		self.categoryPickerView.backgroundColor = UIColor.white
+		self.datePicker.backgroundColor = UIColor.white
+		self.datePicker.maximumDate = Date()
+		self.datePicker.datePickerMode = .date
 
 		/// Allows tap gesture inside the picker view, this way the user the tap on the selected row
 		let tapCategory = UITapGestureRecognizer(target: self, action: #selector(pickerTapped(_:)))
@@ -46,9 +54,15 @@ class AddNewValueViewController: UIViewController {
 
 		categoryPickerView.addGestureRecognizer(tapCategory)
 
+		/// Allows tap gesture inside the picker view, this way the user the tap on the selected row
+		let tapDate = UITapGestureRecognizer(target: self, action: #selector(datePickerTapped(_:)))
+		tapDate.cancelsTouchesInView = false
+		tapDate.delegate = self
 
-		self.datePicker.backgroundColor = UIColor.white
-		self.datePicker.maximumDate = Date()
+		datePicker.addGestureRecognizer(tapDate)
+
+
+
 
         // Do any additional setup after loading the view.
     }
@@ -190,23 +204,15 @@ extension AddNewValueViewController: UIPickerViewDataSource, UIPickerViewDelegat
 	}
 
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-
-		if pickerView == categoryPickerView {
-			return 5
-		} else {
-			return 0
-		}
-
+		return 5
 	}
 
 	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 
 		if pickerView == categoryPickerView {
 			return categoryArray[row]
-		} else {
-			return ""
 		}
-
+		return ""
 	}
 
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -216,30 +222,30 @@ extension AddNewValueViewController: UIPickerViewDataSource, UIPickerViewDelegat
 		}
 	}
 
+	@objc func datePickerValueChanged(_ sender: UIDatePicker) {
+		self.dateTextField.text = Date.dateToString(date: sender.date)
+	}
+
+	@objc func datePickerTapped (_ tapRecognizer: UIGestureRecognizer) {
+		if (tapRecognizer.state == .ended) {
+			dateTextField.text = Date.dateToString(date: datePicker.date)
+		}
+	}
+
 	@objc func pickerTapped(_ tapRecognizer: UIGestureRecognizer) {
 
-		var pickerView: UIPickerView?
-		var textField: UITextField?
-		var array: [String]?
+		if (tapRecognizer.state == .ended) {
 
-		if tapRecognizer.view == categoryPickerView.inputView {
-			pickerView = categoryPickerView
-			textField = categoryTextField
-			array = categoryArray
-		}
+			let rowHeight : CGFloat  = categoryPickerView.rowSize(forComponent: 0).height
 
-		if (tapRecognizer.state == .ended && pickerView != nil) {
+			let selectedRowFrame: CGRect = CGRect(x: 0, y: ((categoryPickerView.frame.height/2) - rowHeight) , width: categoryPickerView.frame.width, height: rowHeight)
 
-			let rowHeight : CGFloat  = pickerView!.rowSize(forComponent: 0).height
-
-			let selectedRowFrame: CGRect = CGRect(x: 0, y: ((pickerView!.frame.height/2) - rowHeight) , width: pickerView!.frame.width, height: rowHeight)
-
-			let userTappedOnSelectedRow = selectedRowFrame.contains(tapRecognizer.location(in: pickerView))
+			let userTappedOnSelectedRow = selectedRowFrame.contains(tapRecognizer.location(in: categoryPickerView))
 
 			if userTappedOnSelectedRow {
 
-				let selectedRow = pickerView?.selectedRow(inComponent: 0)
-				textField?.text = array?[selectedRow!]
+				let selectedRow = categoryPickerView.selectedRow(inComponent: 0)
+				categoryTextField.text = categoryArray[selectedRow]
 
 			}
 		}

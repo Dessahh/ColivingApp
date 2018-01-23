@@ -18,7 +18,8 @@ struct Section {
 
 class FinancesViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
 
-	@IBOutlet weak var pieChart: PieChartView!
+	//@IBOutlet weak var pieChart: PieChartView!
+	@IBOutlet weak var barChart: BarChartView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var categoryTextField: UITextField!
 
@@ -46,8 +47,6 @@ class FinancesViewController: UIViewController, UITableViewDelegate,  UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		self.configureTextField(categoryTextField)
-
 		/// Picker View initial configuration
 
 		self.categoryPickerView.delegate = self
@@ -61,8 +60,38 @@ class FinancesViewController: UIViewController, UITableViewDelegate,  UITableVie
 
 		categoryPickerView.addGestureRecognizer(tapCategory)
 
+		/// Text field initial configuration
+
+		self.configureTextField(categoryTextField)
+
 		categoryTextField.text = "Category: All"
 
+		/// Chart initial configuration
+
+		self.barChart.delegate = self
+
+		// Remove grid of chart
+		self.barChart.xAxis.drawGridLinesEnabled = false
+		self.barChart.leftAxis.drawGridLinesEnabled = false
+		self.barChart.rightAxis.drawGridLinesEnabled = false
+		self.barChart.leftAxis.drawAxisLineEnabled = false
+		self.barChart.rightAxis.drawAxisLineEnabled = false
+		self.barChart.xAxis.drawAxisLineEnabled = false
+
+		// Remove chart visual polution: extra legend, description, axis labels
+		self.barChart.chartDescription?.enabled = false
+		self.barChart.leftAxis.drawLabelsEnabled = false
+		self.barChart.rightAxis.drawLabelsEnabled = false
+		self.barChart.legend.enabled = false
+
+		// Avoids creating double labels
+		self.barChart.xAxis.granularity = 1.0
+
+		// Remove zoom
+		self.barChart.pinchZoomEnabled = false
+		self.barChart.doubleTapToZoomEnabled = false
+		
+		self.barChart.xAxis.labelPosition = .bottom
 
         // Do any additional setup after loading the view.
     }
@@ -77,8 +106,12 @@ class FinancesViewController: UIViewController, UITableViewDelegate,  UITableVie
 				return
 			}
 
+			// Atributes initial value
+
+			self.sectionArray.removeAll()
 			self.financesList = (list?.sorted(by: {$0.date > $1.date}))!
-			//notes.sort({$0.date.timeIntervalSinceNow > $1.date.timeIntervalSinceNow})
+			self.totalCost = 0.0
+			self.categoryCosts = [0.0, 0.0, 0.0, 0.0, 0.0]
 
 			for f in self.financesList {
 
@@ -102,8 +135,10 @@ class FinancesViewController: UIViewController, UITableViewDelegate,  UITableVie
 			}
 
 			DispatchQueue.main.async {
-				self.pieChartUpdate()
+			//	self.pieChartUpdate()
+				self.barChartUpdate()
 				self.tableView.reloadData()
+
 			}
 
 		}
@@ -136,6 +171,7 @@ class FinancesViewController: UIViewController, UITableViewDelegate,  UITableVie
 			}
 		}
 
+
 		self.tableView.reloadData()
 
 	}
@@ -159,7 +195,6 @@ class FinancesViewController: UIViewController, UITableViewDelegate,  UITableVie
 		cell.valueLabel.text = "R$ \(sectionArray[indexPath.section].list[indexPath.row].value)"
 
 		cell.subjectLabel.textColor = sectionArray[indexPath.section].list[indexPath.row].category.color
-		print(financesList[indexPath.row].date.getYear())
 
 		return cell
 	}
@@ -170,6 +205,29 @@ class FinancesViewController: UIViewController, UITableViewDelegate,  UITableVie
 
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return "  \(self.sectionArray[section].name)"
+	}
+
+	///delete row from the table view
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+		if editingStyle == UITableViewCellEditingStyle.delete {
+
+			let transaction = sectionArray[indexPath.section].list[indexPath.row]
+
+			DatabaseManager.removeFinanceTransaction(transaction: transaction, completionHandler: {
+				(error) in
+
+				guard error == nil else {
+					print("Error in removing finance transaction. Error: \(error.debugDescription)")
+					return
+				}
+
+				self.totalCost -= transaction.value
+				self.categoryCosts[transaction.category.categoryNumber - 1] -= transaction.value
+
+
+			})
+		}
 	}
 
     /*
@@ -226,7 +284,17 @@ extension FinancesViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 			categoryTextField.text = "Category: \(categoryList[row])"
 			self.categorySelected = CategoryEnum.getCategory(category: categoryList[row])!
 			self.divideInSections()
-			print(categorySelected.categoryName)
+
+			if categorySelected == .All {
+				// unselect categories
+				self.barChart.highlightValues(nil)
+			} else {
+				let categoryNumber = Double(categorySelected.categoryNumber) - 1.0
+				self.barChart.highlightValue(x: categoryNumber, dataSetIndex: 0)
+			}
+			
+
+
 		}
 	}
 
@@ -257,6 +325,16 @@ extension FinancesViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 				self.categorySelected = CategoryEnum.getCategory(category: array![selectedRow!])!
 				self.divideInSections()
 
+				if categorySelected == .All {
+					// unselect categories
+					self.barChart.highlightValues(nil)
+				} else {
+					let categoryNumber = Double(categorySelected.categoryNumber) - 1.0
+					self.barChart.highlightValue(x: categoryNumber, dataSetIndex: 0)
+				}
+
+
+
 
 			}
 		}
@@ -266,9 +344,34 @@ extension FinancesViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 
 // MARK: - Pie Chart
 
-extension FinancesViewController {
+extension FinancesViewController: ChartViewDelegate {
 
-	func pieChartUpdate () {
+	func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+		if let entry = entry as? BarChartDataEntry {
+
+			self.categorySelected = CategoryEnum.getCategoryByNumber(category: (Int(entry.x) + 1))!
+			self.divideInSections()
+			self.categoryTextField.text = "Category: \(self.categorySelected.categoryName)"
+		}
+	}
+
+	func chartValueNothingSelected(_ chartView: ChartViewBase) {
+		self.categorySelected = .All
+		self.divideInSections()
+		self.categoryTextField.text = "Category: All"
+	}
+
+	func barChartUpdate () {
+		barChart.setBarChartData(xValues: categoryArray, yValues: categoryCosts, label: "")
+		
+		barChart.legend.font = UIFont(name: "Futura", size: 10)!
+
+		//This must stay at end of function
+		barChart.notifyDataSetChanged()
+	}
+
+
+	/*func pieChartUpdate () {
 		//future home of pie chart code
 		let entry1 = PieChartDataEntry(value: Double(categoryCosts[0]), label: CategoryEnum.category1.categoryName)
 		let entry2 = PieChartDataEntry(value: Double(categoryCosts[1]), label: CategoryEnum.category2.categoryName)
@@ -289,7 +392,7 @@ extension FinancesViewController {
 
 		//This must stay at end of function
 		pieChart.notifyDataSetChanged()
-	}
+	}*/
 }
 
 extension FinancesViewController: UITextFieldDelegate {

@@ -190,14 +190,12 @@ class DatabaseManager: NSObject {
 
 		let childRef = ref.child("FinanceList").childByAutoId()
 
-		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "dd/MM/yyyy"
-		let dateString = dateFormatter.string(from: transaction.date)
+		let dateString = Date.dateToString(date: transaction.date)
 
 		let financeDict: [String : Any] = [
 				"title" : transaction.title,
 				"name" : transaction.name,
-				"category" : transaction.category.categoryName,
+				"category" : transaction.category.categoryNumber,
 				"value" : String(transaction.value),
 				"date": dateString
 		]
@@ -266,7 +264,7 @@ class DatabaseManager: NSObject {
 				/* financeDict = [
 						"title" : transaction.title,
 						"name" : transaction.name,
-						"category" : transaction.category.categoryName,
+						"category" : transaction.category.categoryNumber,
 						"value" : String(transaction.value),
 						"date": "\(transaction.date)"
 				]*/
@@ -287,35 +285,31 @@ class DatabaseManager: NSObject {
 				}
 
 				guard let name = financesDict["name"] as? String else {
-					print("Error on fetching finances title on DB.")
+					print("Error on fetching finances name on DB.")
 					return nil
 				}
 
-				guard let categoryString = financesDict["category"] as? String else {
-					print("Error on fetching finances title on DB.")
+				guard let categoryString = financesDict["category"] as? Int else {
+					print("Error on fetching finances category on DB.")
 					return nil
 				}
 
 				guard let valueString = financesDict["value"] as? String else {
-					print("Error on fetching finances title on DB.")
+					print("Error on fetching finances value on DB.")
 					return nil
 				}
 
 				guard let dateString = financesDict["date"] as? String else {
-					print("Error on fetching finances title on DB.")
+					print("Error on fetching finances date on DB.")
 					return nil
 				}
 
-				let category = CategoryEnum.getCategory(category: categoryString)
+
+				let category = CategoryEnum.getCategoryByNumber(category: categoryString)
 
 				let value = Double(valueString)
 
-				let dateFormatter = DateFormatter()
-				dateFormatter.dateFormat = "dd/MM/yyyy"
-
-				guard let date = dateFormatter.date(from: dateString) else {
-					fatalError("ERROR: Date conversion failed due to mismatched format.")
-				}
+				let date = Date.stringToDate(dateString: dateString)
 
 				let financeTransaction = FinanceTransaction(id: itemId, title: title, name: name, value: value!, category: category!, date: date)
 
@@ -329,4 +323,6 @@ class DatabaseManager: NSObject {
 		return nil
 
 	}
+
+	
 }

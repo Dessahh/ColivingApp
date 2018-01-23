@@ -91,4 +91,21 @@ enum CategoryEnum {
 
 		}
 	}
+
+	static func getCategoryByNumber(category: Int) -> CategoryEnum? {
+		switch category {
+		case 1:
+			return .category1
+		case 2:
+			return .category2
+		case 3:
+			return .category3
+		case 4:
+			return .category4
+		case 5:
+			return .category5
+		default:
+			return nil
+		}
+	}
 }

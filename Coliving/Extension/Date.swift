@@ -31,4 +31,23 @@ extension Date {
 		return strDay
 	}
 
+	static func dateToString(date: Date) -> String {
+
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "dd/MM/yyyy"
+		let dateString = dateFormatter.string(from: date)
+
+		return dateString
+	}
+
+	static func stringToDate(dateString: String) -> Date {
+
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "dd/MM/yyyy"
+
+		let date = dateFormatter.date(from: dateString)
+
+		return date!
+	}
+
 }

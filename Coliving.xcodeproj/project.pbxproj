@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		891C8496201763C90032DC53 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891C8495201763C80032DC53 /* BarChartView.swift */; };
+		891C84982017A60B0032DC53 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891C84972017A60B0032DC53 /* CategoriesViewController.swift */; };
+		891C849A2017C13F0032DC53 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 891C84992017C13E0032DC53 /* PoetsenOne-Regular.ttf */; };
 		89261A30201123E400801E3B /* FinanceTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89261A2F201123E400801E3B /* FinanceTransaction.swift */; };
 		89261A32201125CC00801E3B /* CategoryEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89261A31201125CC00801E3B /* CategoryEnum.swift */; };
 		89AD9F3B2007A19D00A8DE47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9F3A2007A19D00A8DE47 /* AppDelegate.swift */; };
@@ -47,6 +50,9 @@
 
 /* Begin PBXFileReference section */
 		438CF5D2770D31502EF60C49 /* Pods-Coliving.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coliving.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coliving/Pods-Coliving.release.xcconfig"; sourceTree = "<group>"; };
+		891C8495201763C80032DC53 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		891C84972017A60B0032DC53 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		891C84992017C13E0032DC53 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
 		89261A2F201123E400801E3B /* FinanceTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransaction.swift; sourceTree = "<group>"; };
 		89261A31201125CC00801E3B /* CategoryEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEnum.swift; sourceTree = "<group>"; };
 		89AD9F372007A19D00A8DE47 /* Coliving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coliving.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +185,7 @@
 		89AD9F4E2007F9A100A8DE47 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				891C84992017C13E0032DC53 /* PoetsenOne-Regular.ttf */,
 				89AD9FEB200D380C00A8DE47 /* Classes */,
 				89AD9F412007A19D00A8DE47 /* Assets.xcassets */,
 				89C28F02200FAE9400A40E2B /* Cell */,
@@ -203,6 +210,7 @@
 				89AD9F532007FCF900A8DE47 /* ShoppingListTableViewController.swift */,
 				89C28F03200FAEB900A40E2B /* FinancesViewController.swift */,
 				89C28F07200FC20200A40E2B /* AddNewValueViewController.swift */,
+				891C84972017A60B0032DC53 /* CategoriesViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -339,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				89CCBFBE2014BD84001D1D80 /* Date.swift */,
+				891C8495201763C80032DC53 /* BarChartView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -414,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89C28F3C20110D3500A40E2B /* IQKeyboardManager.bundle in Resources */,
+				891C849A2017C13F0032DC53 /* PoetsenOne-Regular.ttf in Resources */,
 				89AD9F452007A19D00A8DE47 /* LaunchScreen.storyboard in Resources */,
 				89AD9F422007A19D00A8DE47 /* Assets.xcassets in Resources */,
 				89AD9F402007A19D00A8DE47 /* Main.storyboard in Resources */,
@@ -503,10 +513,12 @@
 				89C28F2E20110D3500A40E2B /* IQNSArray+Sort.m in Sources */,
 				89AD9F542007FCF900A8DE47 /* ShoppingListTableViewController.swift in Sources */,
 				89261A32201125CC00801E3B /* CategoryEnum.swift in Sources */,
+				891C84982017A60B0032DC53 /* CategoriesViewController.swift in Sources */,
 				89C28F3A20110D3500A40E2B /* IQToolbar.m in Sources */,
 				89C28F3B20110D3500A40E2B /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				89AD9FF7200D380C00A8DE47 /* BEMPathManager.m in Sources */,
 				89AD9F64200D16F200A8DE47 /* ShoppingItem.swift in Sources */,
+				891C8496201763C90032DC53 /* BarChartView.swift in Sources */,
 				89C28F06200FAEFB00A40E2B /* FinancesTableViewCell.swift in Sources */,
 				89C28F3920110D3500A40E2B /* IQTitleBarButtonItem.m in Sources */,
 				89AD9FF6200D380C00A8DE47 /* BEMCheckBoxGroup.m in Sources */,
