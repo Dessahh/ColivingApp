@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,19 +24,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oeq-eq-rYW">
-                                <rect key="frame" x="42" y="92" width="291" height="229"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oeq-eq-rYW">
+                                <rect key="frame" x="36.5" y="92" width="302" height="238"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Oeq-eq-rYW" secondAttribute="height" multiplier="291:229" id="Ol1-eA-Uh0"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coliving" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agB-EP-Jhn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coliving" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agB-EP-Jhn">
                                 <rect key="frame" x="64" y="357" width="247" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="agB-EP-Jhn" secondAttribute="height" multiplier="247:100" id="lsN-kQ-350"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="64"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.8901960784313725" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Oeq-eq-rYW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="72" id="0zJ-pC-U2N"/>
+                            <constraint firstItem="Oeq-eq-rYW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7fX-Jy-Cjy"/>
+                            <constraint firstItem="agB-EP-Jhn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eG8-dE-wb8"/>
+                            <constraint firstItem="agB-EP-Jhn" firstAttribute="top" secondItem="Oeq-eq-rYW" secondAttribute="bottom" constant="27" id="qZp-YA-gQu"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

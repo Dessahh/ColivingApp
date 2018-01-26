@@ -45,5 +45,28 @@
 	<array>
 		<string>PoetsenOne-Regular.ttf</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.andressa.aquino.coliving</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1994708667454970</string>
+				<string>coliving</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1994708667454970</string>
+	<key>FacebookDisplayName</key>
+	<string>Coliving</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 </dict>
 </plist>

@@ -31,7 +31,180 @@ class DatabaseManager: NSObject {
 		}
 	}
 
-	// MARK - Shopping List
+	// MARK: - User
+
+	///Adds user object to database
+	static func addUser(_ user: User, completionHandler: @escaping (Error?) -> Void) {
+		self.fetchUser(userID: user.id) {
+			(userFetched) in
+
+			if (userFetched != nil) {
+				print("User was already included in the DB. Updating his name and email informations.")
+			}
+
+			let userRef = ref.child("users").child(user.id)
+
+			let userDict: [String : AnyObject] = [
+				"name": user.name as AnyObject,
+				"email": user.email as AnyObject,
+				"houseGroup": user.houseGroup as AnyObject,
+				"phoneNumber": user.phoneNumber as AnyObject,
+			]
+
+			userRef.setValue(userDict) {
+				(error, _) in
+
+				guard (error == nil) else {
+					completionHandler(error)
+					return
+				}
+
+				completionHandler(nil)
+			}
+		}
+	}
+
+	///Builds main user object from users' database information
+	static func fetchUser(userID: String, completionHandler: @escaping (User?) -> Void) {
+
+		let userRef = ref.child("users/\(userID)")
+
+		userRef.observeSingleEvent(of: .value) {
+			(userSnapshot) in
+
+			//Getting user's information dictionary
+			guard var userDictionary = userSnapshot.value as? [String: AnyObject] else {
+				print("User ID fetched returned a nil snapshot from DB.")
+				completionHandler(nil)
+				return
+			}
+
+			userDictionary["id"] = userID as AnyObject
+
+			//Fetching user's basic information
+
+			guard let user = readUserDictionary(userDictionary: userDictionary) else {
+				print("Error on fetching user's (\(userID)) basic profile information.")
+				completionHandler(nil)
+				return
+			}
+
+			//TODO: why cant I polymorph User -> MainUser?
+
+			completionHandler(user)
+
+		}
+
+	}
+
+	///Fetches user's basic profile information (id, name, email, phone number) from dictionary built by database snapshot.
+	static func readUserDictionary(userDictionary: [String : AnyObject]) -> User? {
+
+		guard let userID = userDictionary["id"] as? String else {
+			print("Fetching user's id from DB returns nil.")
+			return nil
+		}
+
+		guard let userName = userDictionary["name"] as? String else {
+			print("Fetching user's name from DB returns nil.")
+			return nil
+		}
+
+		guard let userEmail = userDictionary["email"] as? String else {
+			print("Fetching user's email from DB returns nil.")
+			return nil
+		}
+
+		guard let userHouseGroup = userDictionary["houseGroup"] as? String else {
+			print("Fetching user's house group from DB returns nil.")
+			return nil
+		}
+
+		guard let userPhoneNumber = userDictionary["phoneNumber"] as? String else {
+			print("Fetching user's phone number from DB returns nil.")
+			return nil
+		}
+
+		let user = User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, houseGroup: userHouseGroup)
+		print("User (\(user.name)) fetched successfully.")
+
+		return user
+	}
+
+
+	static func updateUserHouseGroup(completionHandler: @escaping (Error?) -> Void) {
+
+		let userHouseGroupRef = ref.child("users/\((MainUser.user?.id)!)").child("houseGroup")
+
+		userHouseGroupRef.setValue(MainUser.user?.houseGroup) {
+			(error, _) in
+
+			guard (error == nil) else {
+				completionHandler(error)
+				return
+			}
+
+			completionHandler(nil)
+		}
+	}
+
+	// MARK: - House Group
+
+	static func checkHouseGroup(name: String, completionHandler: @escaping (Bool) -> Void){
+
+		let houseGroupRef = ref.child("House Groups")
+
+		houseGroupRef.observeSingleEvent(of: .value) {
+			(snapshot) in
+
+			if snapshot.hasChild(name) {
+				completionHandler(true)
+			}
+
+			completionHandler(false)
+		}
+	}
+
+	static func addHouseGroup(name: String, completionHandler: @escaping (Error?) -> Void){
+
+		let houseGroupRef = ref.child("House Groups").child(name)
+
+		let categoryDict: [String : AnyObject] = [
+			"Category 1": "Rent" as AnyObject,
+			"Category 2": "Bills" as AnyObject,
+			"Category 3": "Market" as AnyObject,
+			"Category 4": "House Fix" as AnyObject,
+			"Category 5": "Others" as AnyObject,
+		]
+
+		let userDict: [String : AnyObject] = [
+			(MainUser.user?.id)!: "adm" as AnyObject
+		]
+
+		let houseDict: [String: AnyObject] = [
+			"users": userDict as AnyObject,
+			"Categories": categoryDict as AnyObject,
+			"ShoppingList": "" as AnyObject,
+			"FinanceList": "" as AnyObject
+
+		]
+
+		houseGroupRef.setValue(houseDict) {
+			(error, _) in
+
+			guard (error == nil) else {
+				completionHandler(error)
+				return
+			}
+
+			completionHandler(nil)
+
+		}
+
+
+	}
+
+	// MARK: - Shopping List
 
 	static func readShoppingDict(snapshot: DataSnapshot) -> [ShoppingItem]? {
 
@@ -94,7 +267,7 @@ class DatabaseManager: NSObject {
 
 	static func fetchShoppingItem(completionHandler: @escaping([ShoppingItem]?) -> Void){
 
-		let shoppingListRef = ref.child("ShoppingList")
+		let shoppingListRef = ref.child("House Groups").child((MainUser.user?.houseGroup)!).child("ShoppingList")
 
 		shoppingListRef.observeSingleEvent(of: .value) {
 			(snapshot) in
@@ -113,7 +286,7 @@ class DatabaseManager: NSObject {
 
 	static func addObserverToShoppingItems(completionHandler: @escaping([ShoppingItem]?) -> Void){
 
-		ref.child("ShoppingList").observe(.value) {
+		ref.child("House Groups").child((MainUser.user?.houseGroup)!).child("ShoppingList").observe(.value) {
 			(snapshot) in
 
 			guard let shoppingList = DatabaseManager.readShoppingDict(snapshot: snapshot) else {
@@ -129,7 +302,7 @@ class DatabaseManager: NSObject {
 
 	static func addShoppingItem(item: String, completionHandler: @escaping (String?, Error?) -> Void){
 
-		let childRef = ref.child("ShoppingList").childByAutoId()
+		let childRef = ref.child("House Groups").child((MainUser.user?.houseGroup)!).child("ShoppingList").childByAutoId()
 
 		let shoppingDict: [String : String] = [
 			"name": item,
@@ -153,7 +326,7 @@ class DatabaseManager: NSObject {
 
 	static func removeShoppingItem(item: ShoppingItem, completionHandler: @escaping(Error?) -> Void){
 
-		let itemRef = ref.child("ShoppingList").child(item.id!)
+		let itemRef = ref.child("House Groups").child((MainUser.user?.houseGroup)!).child("ShoppingList").child(item.id!)
 
 		itemRef.removeValue {
 			(error, _) in
@@ -170,7 +343,7 @@ class DatabaseManager: NSObject {
 
 	static func changeCheckItemStatus(item: ShoppingItem, newStatus: String, completionHandler: @escaping(Error?) -> Void){
 
-		let checkRef = ref.child("ShoppingList").child(item.id!).child("checked")
+		let checkRef = ref.child("House Groups").child((MainUser.user?.houseGroup)!).child("ShoppingList").child(item.id!).child("checked")
 
 		checkRef.setValue(newStatus) {
 			(error, _) in
@@ -188,7 +361,7 @@ class DatabaseManager: NSObject {
 
 	static func addFinanceTransaction(transaction: FinanceTransaction, completionHandler: @escaping(Error?) -> Void){
 
-		let childRef = ref.child("FinanceList").childByAutoId()
+		let childRef = ref.child("House Groups").child((MainUser.user?.houseGroup)!).child("FinanceList").childByAutoId()
 
 		let dateString = Date.dateToString(date: transaction.date)
 
@@ -218,7 +391,7 @@ class DatabaseManager: NSObject {
 
 	static func removeFinanceTransaction(transaction: FinanceTransaction, completionHandler: @escaping(Error?) -> Void) {
 
-		let financesRef = ref.child("FinanceList").child(transaction.id!)
+		let financesRef = ref.child("House Groups").child((MainUser.user?.houseGroup)!).child("FinanceList").child(transaction.id!)
 
 		financesRef.removeValue {
 			(error, _) in
@@ -235,7 +408,7 @@ class DatabaseManager: NSObject {
 
 	static func addObserverToFinancesList(completionHandler: @escaping([FinanceTransaction]?) -> Void){
 
-		ref.child("FinanceList").observe(.value) {
+		ref.child("House Groups").child((MainUser.user?.houseGroup)!).child("FinanceList").observe(.value) {
 			(snapshot) in
 
 			guard let financesList = DatabaseManager.readFinancesDict(snapshot: snapshot) else {
@@ -289,7 +462,7 @@ class DatabaseManager: NSObject {
 					return nil
 				}
 
-				guard let categoryString = financesDict["category"] as? Int else {
+				guard let categoryInt = financesDict["category"] as? Int else {
 					print("Error on fetching finances category on DB.")
 					return nil
 				}
@@ -305,7 +478,7 @@ class DatabaseManager: NSObject {
 				}
 
 
-				let category = CategoryEnum.getCategoryByNumber(category: categoryString)
+				let category = CategoryEnum.getCategoryByNumber(category: categoryInt)
 
 				let value = Double(valueString)
 
@@ -324,5 +497,66 @@ class DatabaseManager: NSObject {
 
 	}
 
+	// MARK: - Categories
+
+	static func updateCategories(completionHandler: @escaping(Error?) -> Void) {
+
+		let categoriesRef = ref.child("House Groups").child((MainUser.user?.houseGroup)!).child("Categories")
+
+		let categoryDict: [String : AnyObject] = [
+			"Category 1": categoryArray[0] as AnyObject,
+			"Category 2": categoryArray[1] as AnyObject,
+			"Category 3": categoryArray[2] as AnyObject,
+			"Category 4": categoryArray[3] as AnyObject,
+			"Category 5": categoryArray[4] as AnyObject,
+			]
+
+		categoriesRef.setValue(categoryDict) {
+			(error, _) in
+
+			guard (error == nil) else {
+				completionHandler(error)
+				return
+			}
+
+			completionHandler(nil)
+		}
+
+
+	}
+
+	static func addObserverToCategories(completionHandler: @escaping([String]?) -> Void){
+		ref.child("House Groups").child((MainUser.user?.houseGroup)!).child("Categories").observe(.value) {
+			(snapshot) in
+
+			guard let categories = DatabaseManager.readCategoriesDict(snapshot: snapshot) else {
+				print("Error on fetching categories from DB")
+				completionHandler(nil)
+				return
+			}
+
+			completionHandler(categories)
+		}
+	}
+
+	static func readCategoriesDict(snapshot: DataSnapshot) -> [String]? {
+
+		if let snapList = snapshot.children.allObjects as? [DataSnapshot]{
+
+			guard (snapList.count != 0) else {
+				print("No item found on Categories on DB")
+				return nil
+			}
+
+			var categories = [String]()
+
+			for i in snapList {
+				categories.append(i.value as! String) 
+			}
+			return categories
+		}
+
+		return nil
+	}
 	
 }

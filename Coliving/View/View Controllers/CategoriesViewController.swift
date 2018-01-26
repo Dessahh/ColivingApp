@@ -97,37 +97,54 @@ class CategoriesViewController: UIViewController {
 			return
 		}
 
+		var somethingChanged = false
+
 		/// Check wich category changed and update on DB
 		if category1 != categoryArray[0] {
 
 			//Change on DB
+			somethingChanged = true
 			categoryArray[0] = category1!
 		}
 
 		if category2 != categoryArray[1] {
 
 			//Change on DB
+			somethingChanged = true
 			categoryArray[1] = category2!
 		}
 
 		if category3 != categoryArray[2] {
 
 			//Change on DB
+			somethingChanged = true
 			categoryArray[2] = category3!
 		}
 
 		if category4 != categoryArray[3] {
 
 			//Change on DB
+			somethingChanged = true
 			categoryArray[3] = category4!
 		}
 
 		if category5 != categoryArray[4] {
 
 			//Change on DB
+			somethingChanged = true
 			categoryArray[4] = category5!
 		}
 
+		if somethingChanged {
+			DatabaseManager.updateCategories(completionHandler: {
+				(error) in
+
+				guard error == nil else {
+					print("Error on updating categories on BD")
+					return
+				}
+			})
+		}
 
 		
 

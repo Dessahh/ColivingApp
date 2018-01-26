@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Coliving" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Coliving" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,18 +31,81 @@
                                 <state key="normal" title="Entry withou login">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="p5z-H3-sN1" kind="show" id="R3m-dg-dmE"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.8901960784313725" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <segue destination="G9G-xf-hzC" kind="show" identifier="houseGroupSegue" id="sdZ-Mj-1rn"/>
+                        <segue destination="p5z-H3-sN1" kind="show" identifier="loginSegue" id="nff-jY-7n3"/>
+                        <segue destination="5wJ-fn-eFP" kind="show" identifier="always" id="0Cg-tU-CqL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1807.2" y="60.719640179910051"/>
+            <point key="canvasLocation" x="410" y="-1237"/>
+        </scene>
+        <!--Set House Group View Controller-->
+        <scene sceneID="Chv-iy-7uV">
+            <objects>
+                <viewController id="G9G-xf-hzC" customClass="SetHouseGroupViewController" customModule="Coliving" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1dd-e5-h44">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your house group name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n5w-hP-New">
+                                <rect key="frame" x="35" y="208" width="305" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9B-IA-hmU">
+                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="setHouseGroup:" destination="G9G-xf-hzC" eventType="touchUpInside" id="f7z-Yf-jzO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="YY4-Tt-B1s"/>
+                    </view>
+                    <connections>
+                        <outlet property="houseGroupTextField" destination="n5w-hP-New" id="DyZ-Ij-kio"/>
+                        <segue destination="5wJ-fn-eFP" kind="show" identifier="login2Segue" id="u2J-jA-0F1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gta-lA-ock" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-218.40000000000001" y="60.719640179910051"/>
+        </scene>
+        <!--Invite View Controller-->
+        <scene sceneID="TMN-WD-P2F">
+            <objects>
+                <viewController id="5wJ-fn-eFP" customClass="InviteViewController" customModule="Coliving" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t4b-0C-s8T">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ie4-2S-zHM">
+                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="inviteButtonPressed:" destination="5wJ-fn-eFP" eventType="touchUpInside" id="LOB-1M-rby"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="Zgc-qH-YnL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GNo-7L-HpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1311.2" y="307.1964017991005"/>
         </scene>
         <!--Finances-->
         <scene sceneID="XXr-c5-LQv">
@@ -2854,4 +2917,7 @@ AAHuKQAB7jEAAe40AAHuRgAB7kkAAe5OAAAAAAAABAEAAAAAAAAAQQAAAAAAAAAAAAAAAAAB7lA
         <image name="shopping cart icon" width="48" height="32"/>
         <image name="shopping cart red icon" width="48" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0Cg-tU-CqL"/>
+    </inferredMetricsTieBreakers>
 </document>

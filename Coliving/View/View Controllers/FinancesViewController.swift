@@ -15,7 +15,6 @@ struct Section {
 	var list: [FinanceTransaction]
 }
 
-
 class FinancesViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
 
 	//@IBOutlet weak var pieChart: PieChartView!
@@ -97,6 +96,16 @@ class FinancesViewController: UIViewController, UITableViewDelegate,  UITableVie
     }
 
 	override func viewDidAppear(_ animated: Bool) {
+
+		DatabaseManager.addObserverToCategories {
+			(categories) in
+
+			guard (categories != nil) else {
+				print("Error on fetching categories of DB.")
+				return
+			}
+			categoryArray = categories!
+		}
 
 		DatabaseManager.addObserverToFinancesList {
 			(list) in

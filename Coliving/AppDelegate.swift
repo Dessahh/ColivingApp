@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import IQKeyboardManagerSwift
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +22,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		FirebaseApp.configure()
 		IQKeyboardManager.sharedManager().enable = true
+
+		 FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 		
+		return true
+	}
+
+	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+
+		// Handling Facebook authentication
+		let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
+		let annotation = options[UIApplicationOpenURLOptionsKey.annotation]
+		let facebookHandler = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: sourceApplication, annotation: annotation)
+
+		guard facebookHandler == true else {
+			return false
+		}
+
+		//Other URL handling goes here
+
 		return true
 	}
 
@@ -46,6 +65,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	}
+
+	// MARK: - Facebook
+
+
 
 
 }

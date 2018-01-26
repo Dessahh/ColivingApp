@@ -7,9 +7,16 @@ target 'Coliving' do
 
   # Pods for Coliving
   	pod 'Charts'
+
+	pod 'FacebookCore'
+	pod 'FacebookLogin'
+	pod 'FacebookShare'
+
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
+	pod 'FirebaseUI/Auth'
+	pod 'FirebaseUI/Facebook'
+	
 	pod 'IQKeyboardManagerSwift'
-
 
 end

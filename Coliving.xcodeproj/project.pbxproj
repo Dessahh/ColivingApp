@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8917BB43201BAB7C00AB3217 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8917BB42201BAB7C00AB3217 /* InviteViewController.swift */; };
 		891C8496201763C90032DC53 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891C8495201763C80032DC53 /* BarChartView.swift */; };
 		891C84982017A60B0032DC53 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891C84972017A60B0032DC53 /* CategoriesViewController.swift */; };
 		891C849A2017C13F0032DC53 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 891C84992017C13E0032DC53 /* PoetsenOne-Regular.ttf */; };
+		891C849C2018FE320032DC53 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891C849B2018FE320032DC53 /* LoginViewController.swift */; };
+		891C849F20190C330032DC53 /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891C849E20190C330032DC53 /* LoginServices.swift */; };
+		891C84A120190D1E0032DC53 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891C84A020190D1E0032DC53 /* User.swift */; };
+		891C84A320190E740032DC53 /* MainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891C84A220190E740032DC53 /* MainUser.swift */; };
+		891C84A5201A0A350032DC53 /* SetHouseGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891C84A4201A0A350032DC53 /* SetHouseGroupViewController.swift */; };
 		89261A30201123E400801E3B /* FinanceTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89261A2F201123E400801E3B /* FinanceTransaction.swift */; };
 		89261A32201125CC00801E3B /* CategoryEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89261A31201125CC00801E3B /* CategoryEnum.swift */; };
 		89AD9F3B2007A19D00A8DE47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AD9F3A2007A19D00A8DE47 /* AppDelegate.swift */; };
@@ -50,9 +56,15 @@
 
 /* Begin PBXFileReference section */
 		438CF5D2770D31502EF60C49 /* Pods-Coliving.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coliving.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coliving/Pods-Coliving.release.xcconfig"; sourceTree = "<group>"; };
+		8917BB42201BAB7C00AB3217 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
 		891C8495201763C80032DC53 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		891C84972017A60B0032DC53 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		891C84992017C13E0032DC53 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
+		891C849B2018FE320032DC53 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		891C849E20190C330032DC53 /* LoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServices.swift; sourceTree = "<group>"; };
+		891C84A020190D1E0032DC53 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		891C84A220190E740032DC53 /* MainUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUser.swift; sourceTree = "<group>"; };
+		891C84A4201A0A350032DC53 /* SetHouseGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetHouseGroupViewController.swift; sourceTree = "<group>"; };
 		89261A2F201123E400801E3B /* FinanceTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransaction.swift; sourceTree = "<group>"; };
 		89261A31201125CC00801E3B /* CategoryEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEnum.swift; sourceTree = "<group>"; };
 		89AD9F372007A19D00A8DE47 /* Coliving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coliving.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +150,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		891C849D20190BD80032DC53 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				891C849E20190C330032DC53 /* LoginServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		89261A33201127ED00801E3B /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,11 +193,13 @@
 				89261A33201127ED00801E3B /* Enum */,
 				89CCBFBD2014BD69001D1D80 /* Extension */,
 				89AD9F62200D16A700A8DE47 /* Objects */,
+				891C849D20190BD80032DC53 /* Services */,
 				89AD9F55200BC89400A8DE47 /* Persistence */,
 				89AD9F4E2007F9A100A8DE47 /* View */,
 				89AD9F3A2007A19D00A8DE47 /* AppDelegate.swift */,
 				89AD9F462007A19D00A8DE47 /* Info.plist */,
 				89AD9F60200D145700A8DE47 /* GoogleService-Info.plist */,
+				891C84A220190E740032DC53 /* MainUser.swift */,
 			);
 			path = Coliving;
 			sourceTree = "<group>";
@@ -211,6 +233,9 @@
 				89C28F03200FAEB900A40E2B /* FinancesViewController.swift */,
 				89C28F07200FC20200A40E2B /* AddNewValueViewController.swift */,
 				891C84972017A60B0032DC53 /* CategoriesViewController.swift */,
+				891C849B2018FE320032DC53 /* LoginViewController.swift */,
+				891C84A4201A0A350032DC53 /* SetHouseGroupViewController.swift */,
+				8917BB42201BAB7C00AB3217 /* InviteViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -237,6 +262,7 @@
 			children = (
 				89AD9F63200D16F200A8DE47 /* ShoppingItem.swift */,
 				89261A2F201123E400801E3B /* FinanceTransaction.swift */,
+				891C84A020190D1E0032DC53 /* User.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -440,9 +466,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Coliving/Pods-Coliving-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -474,7 +505,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Coliving/Pods-Coliving-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -482,7 +521,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -505,13 +552,17 @@
 				89261A30201123E400801E3B /* FinanceTransaction.swift in Sources */,
 				89C28F3420110D3500A40E2B /* IQKeyboardManager.m in Sources */,
 				89C28F3720110D3500A40E2B /* IQBarButtonItem.m in Sources */,
+				891C849F20190C330032DC53 /* LoginServices.swift in Sources */,
 				89AD9FF5200D380C00A8DE47 /* BEMCheckBox.m in Sources */,
+				8917BB43201BAB7C00AB3217 /* InviteViewController.swift in Sources */,
 				89AD9F5F200CE09100A8DE47 /* ShoppingListTableViewCell.swift in Sources */,
+				891C84A5201A0A350032DC53 /* SetHouseGroupViewController.swift in Sources */,
 				89C28F3320110D3500A40E2B /* IQUIWindow+Hierarchy.m in Sources */,
 				89C28F3520110D3500A40E2B /* IQKeyboardReturnKeyHandler.m in Sources */,
 				89C28F3820110D3500A40E2B /* IQPreviousNextView.m in Sources */,
 				89C28F2E20110D3500A40E2B /* IQNSArray+Sort.m in Sources */,
 				89AD9F542007FCF900A8DE47 /* ShoppingListTableViewController.swift in Sources */,
+				891C849C2018FE320032DC53 /* LoginViewController.swift in Sources */,
 				89261A32201125CC00801E3B /* CategoryEnum.swift in Sources */,
 				891C84982017A60B0032DC53 /* CategoriesViewController.swift in Sources */,
 				89C28F3A20110D3500A40E2B /* IQToolbar.m in Sources */,
@@ -522,6 +573,8 @@
 				89C28F06200FAEFB00A40E2B /* FinancesTableViewCell.swift in Sources */,
 				89C28F3920110D3500A40E2B /* IQTitleBarButtonItem.m in Sources */,
 				89AD9FF6200D380C00A8DE47 /* BEMCheckBoxGroup.m in Sources */,
+				891C84A120190D1E0032DC53 /* User.swift in Sources */,
+				891C84A320190E740032DC53 /* MainUser.swift in Sources */,
 				89C28F3020110D3500A40E2B /* IQUITextFieldView+Additions.m in Sources */,
 				89C28F3620110D3500A40E2B /* IQTextView.m in Sources */,
 				89C28F2F20110D3500A40E2B /* IQUIScrollView+Additions.m in Sources */,
